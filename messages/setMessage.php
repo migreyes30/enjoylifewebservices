@@ -5,15 +5,15 @@
 		global $DATABASE_USER;
 		global $DATABASE_PASS;
 		global $PASSPHRASE;
-		require_once 'config/variables.php';		
+		require_once '../config/variables.php';	
 
-		$hola = $_POST['formData'];
+		$user = $_POST['user'];
+		$message = $_POST['mensaje'];
+		$token = $_POST['token'];
+		
+		error_log("Error " . $_POST['mensaje'] . " " , 0);
 
-		$token = $_GET['token'];
-		$message = $_GET['message'];
-		$user = $_GET['user'];
 		$fecha = new MongoDate();
-
 		//validamos el token recibido.
 		if($token == md5($PASSPHRASE)){
 
