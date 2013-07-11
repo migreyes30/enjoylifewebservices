@@ -23,7 +23,7 @@
 		global $DATABASE_USER;
 		global $DATABASE_PASS;
 		global $PASSPHRASE;
-		require_once 'config/variables.php';		
+		require_once '../config/variables.php';		
 
 
 
