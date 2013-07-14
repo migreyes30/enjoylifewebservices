@@ -7,11 +7,9 @@
 		global $PASSPHRASE;
 		require_once '../config/variables.php';	
 
-		$user = $_POST['user'];
-		$message = $_POST['mensaje'];
-		$token = $_POST['token'];
-		
-		error_log("Error " . $_POST['mensaje'] . " " , 0);
+		$user = $_GET['user'];
+		$message = $_GET['mensaje'];
+		$token = $_GET['token'];
 
 		$fecha = new MongoDate();
 		//validamos el token recibido.
@@ -29,6 +27,24 @@
 
 			preg_match_all('/#(\w+)/',$message,$arregloHashtags);
 			preg_match_all('/@(\w+)/',$message,$arregloDestinatarios);
+
+
+			foreach ($arregloHashtags[1] as &$value) {
+					switch ($value)
+					{
+					case 'peso':
+					  registraPeso($message,$user);
+					  break;
+					case 'talla':
+					  registraTalla($message,$user);
+					  break;
+					case 'hashtag':
+					  echo "";
+					  break;
+					}
+
+			}
+
 
 			if(count($arregloHashtags) > 0 && count($arregloDestinatarios) > 0){
 				$documentoMensaje = array(
@@ -62,8 +78,8 @@
 			}
 			
 
-			$mensajes->insert($documentoMensaje);
-
+			//$mensajes->insert($documentoMensaje);
+			$m->close();
 			/* output in necessary format */
 				header('content-type: application/json; charset=utf-8');
 				echo json_encode($message);
@@ -72,5 +88,119 @@
 			echo "Invalid Token";
 			error_log("Error invalid token  " , 0);
 		}
+
+
+		function registraPeso($mensaje,$usuario){
+			global $DATABASE_HOSTNAME;
+			global $DATABASE_NAME;
+			global $DATABASE_PORT;
+			global $DATABASE_USER;
+			global $DATABASE_PASS;
+			global $PASSPHRASE;
+			require_once '../config/variables.php';	
+
+			$posicionPeso = strrpos($mensaje, "peso");
+			$tamanoMensaje = strlen($mensaje);
+
+			preg_match_all('!\d+!', substr($mensaje, $posicionPeso, $tamanoMensaje ) , $matches);
+			print_r($matches);
+
+			if(count($matches[0])>0 ){
+				$peso = $matches[0][0];
+
+				if($peso > 30 && $peso < 200 ){
+
+					$m = new Mongo('mongodb://'.$DATABASE_HOSTNAME.':'.$DATABASE_PORT);
+
+					// Seleccionamos una base de datos
+					$db = $m->$DATABASE_NAME;
+
+					// Seleccionamos una coleccion
+					$clientes = $db->clientes;
+
+					$clientes -> update(  
+						array("usuario" => $usuario),
+						array('$push' => array(
+							"historialPeso" => array(
+								"fecha" => new MongoDate(),
+								"peso" => $peso
+								)
+							)
+						)
+						); 
+
+					$clientes -> update(  
+						array("usuario" => $usuario),
+						array('$set' => array(
+							"peso" => $peso
+							)
+						)
+						); 					
+					$m->close();
+
+				}
+
+
+
+			}
+			
+		}
+
+
+		function registraTalla($mensaje,$usuario){
+			global $DATABASE_HOSTNAME;
+			global $DATABASE_NAME;
+			global $DATABASE_PORT;
+			global $DATABASE_USER;
+			global $DATABASE_PASS;
+			global $PASSPHRASE;
+			require_once '../config/variables.php';	
+
+			$posicionPeso = strrpos($mensaje, "talla");
+			$tamanoMensaje = strlen($mensaje);
+
+			preg_match_all('!\d+!', substr($mensaje, $posicionPeso, $tamanoMensaje ) , $matches);
+			print_r($matches);
+
+			if(count($matches[0])>0 ){
+				$talla = $matches[0][0];
+
+				if($talla >= 0 && $talla < 200 ){
+
+					$m = new Mongo('mongodb://'.$DATABASE_HOSTNAME.':'.$DATABASE_PORT);
+
+					// Seleccionamos una base de datos
+					$db = $m->$DATABASE_NAME;
+
+					// Seleccionamos una coleccion
+					$clientes = $db->clientes;
+
+					$clientes -> update(  
+						array("usuario" => $usuario),
+						array('$push' => array(
+							"historialTalla" => array(
+								"fecha" => new MongoDate(),
+								"talla" => $talla
+								)
+							)
+						)
+						); 
+
+					$clientes -> update(  
+						array("usuario" => $usuario),
+						array('$set' => array(
+							"talla" => $talla
+							)
+						)
+						); 					
+					$m->close();
+
+				}
+
+
+
+			}
+			
+		}		
 
 ?>
