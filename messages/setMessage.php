@@ -7,9 +7,9 @@
 		global $PASSPHRASE;
 		require_once '../config/variables.php';	
 
-		$user = $_GET['user'];
-		$message = $_GET['mensaje'];
-		$token = $_GET['token'];
+		$user = $_POST['user'];
+		$message = $_POST['mensaje'];
+		$token = $_POST['token'];
 
 		$fecha = new MongoDate();
 		//validamos el token recibido.
