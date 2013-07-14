@@ -78,7 +78,7 @@
 			}
 			
 
-			//$mensajes->insert($documentoMensaje);
+			$mensajes->insert($documentoMensaje);
 			$m->close();
 			/* output in necessary format */
 				header('content-type: application/json; charset=utf-8');
