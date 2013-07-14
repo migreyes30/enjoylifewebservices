@@ -55,7 +55,7 @@
 			   		"_id" => $obj['_id'],
 			   		"username" => $obj['remitente'],
 			   		"message" => $obj['mensaje'],
-			   		"date" => $obj['fecha'],
+			   		"date" => date('d M Y, g:i a', $obj['fecha']->sec)
 			   		); 
 			    
 			}
