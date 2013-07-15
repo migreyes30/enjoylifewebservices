@@ -8,17 +8,73 @@
 		require_once '../config/variables.php';	
 
 		$token = $_POST['token'];
-		
-		//error_log("Error " . $_POST['token'] . " " , 0);
 
 		//validamos el token recibido.
 		if($token == md5($PASSPHRASE)){
 
-			echo "Registrado";
+			$usuario = $_POST['usuario'];
+			$nombre = $_POST['nombre'];
+			$password = $_POST['password'];
+			$email = $_POST['email'];
+			$peso = $_POST['peso'];
+			$talla = $_POST['talla'];
+
+			// Nos conectamos a la base
+	        $mongoDB = new Mongo('mongodb://'.$DATABASE_HOSTNAME.':'.$DATABASE_PORT);
+	        // Seleccionamos una base de datos
+	        $database = $mongoDB->$DATABASE_NAME;
+	        // Seleccionamos una coleccion
+	        $clientes = $database->clientes;
+	        
+			$query = array('usuario' =>  $usuario);
+			$isActive = array('usuario' =>  1);
+
+	        $result = $clientes->find($query,$isActive);
+
+	        $array = iterator_to_array($result);
+
+	        if(count($array) > 0){
+
+	        	foreach ($result as $obj) {
+		        	$userInDB=$obj['usuario'];
+		        }
+
+		        echo ($userInDB);
+
+	        }else{
+
+				$fecha = new MongoDate();
+
+	        	$newClient = array(
+								"usuario" => $usuario,
+								"nombre" => $nombre,
+								"password" => md5($password),
+								"email" => $email,
+								"fechaRegistro" => $fecha,
+								"historialPeso" => array(
+														array(
+															"fecha" => $fecha,
+															"peso" => $peso
+														)
+													),
+								"peso" => $peso,
+								"historialTalla" => array(
+														array(
+															"fecha" => $fecha,
+															"talla" => $talla
+														)
+													),
+								"talla" => $talla
+							);
+
+	        	$clientes -> insert($newClient);
+	        }
+
+	        $mongoDB->close();
 
 		}else{
-			echo "Invalid Token";
-			error_log("Error invalid token  " , 0);
+			echo "Token Invalido";
+			error_log("Error Token Invalido " , 0);
 		}
 
 ?>
