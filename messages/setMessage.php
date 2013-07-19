@@ -10,6 +10,7 @@
 		$user = $_POST['user'];
 		$message = $_POST['mensaje'];
 		$token = $_POST['token'];
+		$pesoRegistrado = false;
 
 		$fecha = new MongoDate();
 		//validamos el token recibido.
@@ -28,41 +29,43 @@
 			preg_match_all('/#(\w+)/',$message,$arregloHashtags);
 			preg_match_all('/@(\w+)/',$message,$arregloDestinatarios);
 
-
-			foreach ($arregloHashtags[1] as &$value) {
-					switch ($value)
-					{
-					case 'peso':
-					  registraPeso($message,$user);
-					  break;
-					case 'talla':
-					  registraTalla($message,$user);
-					  break;
-					case 'hashtag':
-					  echo "";
-					  break;
-					}
-
+			if(count($arregloHashtags[1]) > 0 ) { //funciones especiales de hashtags
+				foreach ($arregloHashtags[1] as &$value) {
+						switch ($value)
+						{
+						case 'peso':
+						  $pesoRegistrado = registraPeso($message,$user,$db);
+						  break;
+						case 'talla':
+						  registraTalla($message,$user,$db);
+						  break;
+						case 'hashtag':
+						  echo "";
+						  break;
+						}
+				}	
 			}
 
 
-			if(count($arregloHashtags) > 0 && count($arregloDestinatarios) > 0){
+			if(count($arregloHashtags[1]) > 0 && count($arregloDestinatarios[1]) > 0){
 				$documentoMensaje = array(
 					"mensaje" => $message,
 					"remitente" => $user,
 					"fecha" => $fecha,
 					"hashtags" => $arregloHashtags[1],
-					"destinatarios" => $arregloDestinatarios[1]
+					"destinatarios" => $arregloDestinatarios[1],
+					"registroPeso" => $pesoRegistrado
 				);
 	
-			}elseif (count($arregloHashtags) > 0 && count($arregloHashtags) == 0) {
+			}elseif (count($arregloHashtags[1]) > 0 && count($arregloDestinatarios[1]) == 0) {
 				$documentoMensaje = array(
 					"mensaje" => $message,
 					"remitente" => $user,
 					"fecha" => $fecha,
-					"hashtags" => $arregloHashtags[1]
+					"hashtags" => $arregloHashtags[1],
+					"registroPeso" => $pesoRegistrado
 				);
-			}elseif (count($arregloHashtags) == 0 && count($arregloHashtags) > 0) {
+			}elseif (count($arregloHashtags[1]) == 0 && count($arregloDestinatarios[1]) > 0) {
 				$documentoMensaje = array(
 					"mensaje" => $message,
 					"remitente" => $user,
@@ -90,30 +93,17 @@
 		}
 
 
-		function registraPeso($mensaje,$usuario){
-			global $DATABASE_HOSTNAME;
-			global $DATABASE_NAME;
-			global $DATABASE_PORT;
-			global $DATABASE_USER;
-			global $DATABASE_PASS;
-			global $PASSPHRASE;
-			require_once '../config/variables.php';	
-
+		function registraPeso($mensaje,$usuario,$db){
+			error_log("hola aa" ,0);
 			$posicionPeso = strrpos($mensaje, "peso");
 			$tamanoMensaje = strlen($mensaje);
 
 			preg_match_all('!\d+!', substr($mensaje, $posicionPeso, $tamanoMensaje ) , $matches);
-			print_r($matches);
 
 			if(count($matches[0])>0 ){
 				$peso = $matches[0][0];
 
 				if($peso > 30 && $peso < 200 ){
-
-					$m = new Mongo('mongodb://'.$DATABASE_HOSTNAME.':'.$DATABASE_PORT);
-
-					// Seleccionamos una base de datos
-					$db = $m->$DATABASE_NAME;
 
 					// Seleccionamos una coleccion
 					$clientes = $db->clientes;
@@ -135,42 +125,30 @@
 							"peso" => $peso
 							)
 						)
-						); 					
-					$m->close();
-
+						); 
+					return true;
+				}else{
+					return false;
 				}
 
-
-
+			}else{
+				return false;
 			}
 			
 		}
 
 
-		function registraTalla($mensaje,$usuario){
-			global $DATABASE_HOSTNAME;
-			global $DATABASE_NAME;
-			global $DATABASE_PORT;
-			global $DATABASE_USER;
-			global $DATABASE_PASS;
-			global $PASSPHRASE;
-			require_once '../config/variables.php';	
+		function registraTalla($mensaje,$usuario,$db){
 
 			$posicionPeso = strrpos($mensaje, "talla");
 			$tamanoMensaje = strlen($mensaje);
 
 			preg_match_all('!\d+!', substr($mensaje, $posicionPeso, $tamanoMensaje ) , $matches);
-			print_r($matches);
 
 			if(count($matches[0])>0 ){
 				$talla = $matches[0][0];
 
 				if($talla >= 0 && $talla < 200 ){
-
-					$m = new Mongo('mongodb://'.$DATABASE_HOSTNAME.':'.$DATABASE_PORT);
-
-					// Seleccionamos una base de datos
-					$db = $m->$DATABASE_NAME;
 
 					// Seleccionamos una coleccion
 					$clientes = $db->clientes;
@@ -192,8 +170,7 @@
 							"talla" => $talla
 							)
 						)
-						); 					
-					$m->close();
+						); 
 
 				}
 
