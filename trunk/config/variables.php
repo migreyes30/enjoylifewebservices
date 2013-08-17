@@ -7,8 +7,20 @@ $IPSERVER = $_SERVER['HTTP_HOST'];
 
 #Base de datos
 
+
+/*
+--Localost
+$DATABASE_HOSTNAME = 'localhost';
+
+--Ip Gordon
+$DATABASE_HOSTNAME = '192.168.1.14';
+
+--Servidor Amazon
+$DATABASE_HOSTNAME = '54.235.245.127';
+*/
+
 $DATABASE_NAME = 'enjoylife';
-$DATABASE_HOSTNAME = '192.168.1.14';#'localhost';
+$DATABASE_HOSTNAME = 'localhost';
 $DATABASE_PORT     = 27017;
 $DATABASE_USER = 'root';
 $DATABASE_PASS = 'password';
