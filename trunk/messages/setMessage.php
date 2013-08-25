@@ -113,7 +113,7 @@
 						array('$push' => array(
 							"historialPeso" => array(
 								"fecha" => new MongoDate(),
-								"peso" => $peso
+								"peso" => (int)$peso
 								)
 							)
 						)
@@ -122,7 +122,7 @@
 					$clientes -> update(  
 						array("usuario" => $usuario),
 						array('$set' => array(
-							"peso" => $peso
+							"peso" => (int)$peso
 							)
 						)
 						); 
@@ -158,7 +158,7 @@
 						array('$push' => array(
 							"historialTalla" => array(
 								"fecha" => new MongoDate(),
-								"talla" => $talla
+								"talla" => (int)$talla
 								)
 							)
 						)
@@ -167,7 +167,7 @@
 					$clientes -> update(  
 						array("usuario" => $usuario),
 						array('$set' => array(
-							"talla" => $talla
+							"talla" => (int)$talla
 							)
 						)
 						); 
