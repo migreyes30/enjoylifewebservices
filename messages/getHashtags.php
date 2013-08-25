@@ -50,6 +50,8 @@
 			    
 			}
 
+			$m ->close();
+
 			$success = array('response' => $posts);
 			/* output in necessary format */
 				header('content-type: application/json; charset=utf-8');

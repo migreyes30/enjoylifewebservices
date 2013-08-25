@@ -16,7 +16,7 @@
 		    return preg_match($identifier_syntax, $subject) && !in_array(strtolower($subject), $reserved_words);
 		}
 	// El parametro token es necesario y checamos si el callback esta correcto
-	if(isset($_GET['token']) && (is_valid_callback($_GET['callback']) ) ) {
+	if(isset($_GET['token'])  && isset($_GET['usuario']) && (is_valid_callback($_GET['callback']) ) ) {
 		global $DATABASE_HOSTNAME;
 		global $DATABASE_NAME;
 		global $DATABASE_PORT;
@@ -26,7 +26,7 @@
 		require_once '../config/variables.php';		
 
 
-
+		$usuario = $_GET['usuario'];
 		$token = $_GET['token'];
 
 		//validamos el token recibido.
@@ -38,16 +38,55 @@
 			// Seleccionamos una base de datos
 			$db = $m->$DATABASE_NAME;
 
-			// Seleccionamos una coleccion
-			$plans = $db->plans;
 
-			$result = $plans->find();
+			// Comprobamos que el usuario haya iniciado el plan
 
-			$posts = array();
-			// iterate through the results
-			foreach ($result as $obj) {
-			   	$posts[] = $obj['plan'];
+			$clientes = $db->clientes;
+
+			$queryUsuario = array("usuario" => $usuario);
+			$projectUsuario = array("fechaInicioPlan" => 1);
+
+
+			$resultUsuario = $clientes->find($queryUsuario,$projectUsuario);
+
+			$todayDate = mktime();
+			$startPlanDate = "";
+
+			foreach ($resultUsuario as $objUsuario) {
+			   	$startPlanDate = $objUsuario['fechaInicioPlan']->sec;
 			    
+			}
+
+
+
+			// Si el usuario ya tiene plan 
+
+			if($startPlanDate != null && $startPlanDate != ""){
+
+
+				//Numero de semanas que han pasado
+
+				$numberOfWeek =  date("W", $todayDate) - date("W", $startPlanDate);
+
+
+				// Seleccionamos una coleccion
+				$plans = $db->plans;
+
+				$queryPlan = array("semana" => $numberOfWeek);
+
+				$result = $plans->find();
+
+				$posts = array();
+				// iterate through the results
+				foreach ($result as $obj) {
+				   	$posts[] = $obj['plan'];
+				    
+				}
+
+
+
+			}else{
+				$posts[] = "noPlan";
 			}
 
 			$success = array('response' => $posts);
