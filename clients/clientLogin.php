@@ -59,7 +59,6 @@
 					    );  
 
 		        	setcookie("userId", $idInDB);
-
 					echo json_encode($response);
 		        	//$_COOKIE;
 		        }else{
