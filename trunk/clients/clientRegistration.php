@@ -54,17 +54,17 @@
 								"historialPeso" => array(
 														array(
 															"fecha" => $fecha,
-															"peso" => $peso
+															"peso" => (int)$peso
 														)
 													),
-								"peso" => $peso,
+								"peso" => (int)$peso,
 								"historialTalla" => array(
 														array(
 															"fecha" => $fecha,
-															"talla" => $talla
+															"talla" => (int)$talla
 														)
 													),
-								"talla" => $talla
+								"talla" => (int)$talla
 							);
 
 	        	$clientes -> insert($newClient);
