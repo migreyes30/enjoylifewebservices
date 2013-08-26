@@ -1,22 +1,26 @@
 <?php
-#cambiar colores en los links.
+/*
+cambiar colores en los links.
 
-#IP del servidor
+IP del servidor
 
+*/
 $IPSERVER = $_SERVER['HTTP_HOST'];
 
-#Base de datos
+//Base de datos
 $DATABASE_NAME = 'enjoylife';
 
 
-#--Localost
+//Localost
 $DATABASE_HOSTNAME = 'localhost';
 
-#--Ip Gordon
-#$DATABASE_HOSTNAME = '192.168.1.14';
+//Ip Gordon
+//$DATABASE_HOSTNAME = '192.168.1.14';
 
-#--Servidor Amazon
-#$DATABASE_HOSTNAME = '54.235.245.127';
+//Servidor Amazon
+//$DATABASE_HOSTNAME = '54.235.245.127';
+
+
 
 $DATABASE_PORT     = 27017;
 $DATABASE_USER = 'root';
