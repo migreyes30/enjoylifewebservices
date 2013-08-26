@@ -67,14 +67,14 @@
 				//Numero de semanas que han pasado
 
 				$numberOfWeek =  date("W", $todayDate) - date("W", $startPlanDate);
-
+				$numberOfWeek = $numberOfWeek + 1;
 
 				// Seleccionamos una coleccion
 				$plans = $db->plans;
 
 				$queryPlan = array("semana" => $numberOfWeek);
 
-				$result = $plans->find();
+				$result = $plans->find($queryPlan);
 
 				$posts = array();
 				// iterate through the results
