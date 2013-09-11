@@ -58,8 +58,10 @@
 					        'idInDB' => $idInDB 
 					    );  
 
-		        	setcookie("userId", $idInDB);
+		        	setcookie("userId", $userInDB);
+					
 					echo json_encode($response);
+
 		        	//$_COOKIE;
 		        }else{
 		        	echo json_encode($noLogin);
