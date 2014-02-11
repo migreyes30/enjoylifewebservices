@@ -9,6 +9,7 @@
 
 		$user = $_POST['user'];
 		$message = $_POST['mensaje'];
+		$location = $_POST['location'];
 		$token = $_POST['token'];
 		$pesoRegistrado = false;
 
@@ -54,7 +55,8 @@
 					"fecha" => $fecha,
 					"hashtags" => $arregloHashtags[1],
 					"destinatarios" => $arregloDestinatarios[1],
-					"registroPeso" => $pesoRegistrado
+					"registroPeso" => $pesoRegistrado,
+					"location" => $location
 				);
 	
 			}elseif (count($arregloHashtags[1]) > 0 && count($arregloDestinatarios[1]) == 0) {
@@ -63,24 +65,26 @@
 					"remitente" => $user,
 					"fecha" => $fecha,
 					"hashtags" => $arregloHashtags[1],
-					"registroPeso" => $pesoRegistrado
+					"registroPeso" => $pesoRegistrado,
+					"location" => $location
 				);
 			}elseif (count($arregloHashtags[1]) == 0 && count($arregloDestinatarios[1]) > 0) {
 				$documentoMensaje = array(
 					"mensaje" => $message,
 					"remitente" => $user,
 					"fecha" => $fecha,
-					"destinatarios" => $arregloDestinatarios[1]
+					"destinatarios" => $arregloDestinatarios[1],
+					"location" => $location
 				);
 			}else{
 				$documentoMensaje = array(
 					"mensaje" => $message,
 					"fecha" => $fecha,
-					"remitente" => $user
+					"remitente" => $user,
+					"location" => $location
 				);				
 			}
 			
-
 			$mensajes->insert($documentoMensaje);
 			$m->close();
 			/* output in necessary format */

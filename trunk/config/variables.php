@@ -28,4 +28,13 @@ $DATABASE_PASS = 'password';
 
 $PASSPHRASE = 'mexico00';
 
+
+//email
+
+$HOST_SMTP = "ssl://smtp.gmail.com";;
+$PORT_SMTP = "465";
+$USER_SMTP = "support@enjoyhealth.me";
+$PASS_SMTP = "m3xic0$1";
+$NOREPLY_EMAIL = "noreply@enjoyhealth.com";
+
 ?>

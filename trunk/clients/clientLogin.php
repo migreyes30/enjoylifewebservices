@@ -15,6 +15,8 @@
 			$usuario = $_POST['usuario'];
 			$password = $_POST['password'];
 
+			error_log("intento de login ".$usuario." con pass". $password, 0);
+
 			// Nos conectamos a la base
 	        $mongoDB = new Mongo('mongodb://'.$DATABASE_HOSTNAME.':'.$DATABASE_PORT);
 	        // Seleccionamos una base de datos
@@ -59,6 +61,9 @@
 					    );  
 
 		        	setcookie("userId", $userInDB);
+
+		        	header('Content-Type: text/javascript; charset=utf8');
+    				header('Access-Control-Allow-Origin: *');
 					
 					echo json_encode($response);
 
@@ -69,6 +74,8 @@
 
 	        }else{
 	        	//If array < 0 user doesnt exist
+					header('Content-Type: text/javascript; charset=utf8');
+    				header('Access-Control-Allow-Origin: *');
 	        	echo json_encode($noLogin);
 	        }
 
