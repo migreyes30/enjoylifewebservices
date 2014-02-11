@@ -15,9 +15,8 @@
 
 		    return preg_match($identifier_syntax, $subject) && !in_array(strtolower($subject), $reserved_words);
 		}
-		
 	// El parametro token es necesario y checamos si el callback esta correcto
-	if(isset($_GET['token']) && isset($_GET['usuario']) && (is_valid_callback($_GET['callback']) ) ) {
+	if(isset($_GET['token'])  && isset($_GET['usuario']) && (is_valid_callback($_GET['callback']) ) ) {
 		global $DATABASE_HOSTNAME;
 		global $DATABASE_NAME;
 		global $DATABASE_PORT;
@@ -26,10 +25,9 @@
 		global $PASSPHRASE;
 		require_once '../config/variables.php';		
 
-		$token = $_GET['token'];
-		$usuario = $_GET['usuario'];
 
-		$currentDate = new MongoDate();
+		$usuario = $_GET['usuario'];
+		$token = $_GET['token'];
 
 		//validamos el token recibido.
 		if($token == md5($PASSPHRASE)){
@@ -40,26 +38,47 @@
 			// Seleccionamos una base de datos
 			$db = $m->$DATABASE_NAME;
 
-			// Seleccionamos una coleccion
+
+			// Comprobamos que el usuario haya iniciado el plan
+
 			$clientes = $db->clientes;
 
-			
-			$posts = array();
+			$queryUsuario = array("usuario" => $usuario);
+			$projectUsuario = array("fechaInicioPlan" => 1);
 
-			$clientes -> update(  
-				array("usuario" => $usuario),
-				array('$set' => array(
-					"fechaInicioPlan" => $currentDate
-					)
-				)
-				);
-			$m ->close();
-			sleep(1);
 
-			$success = array('response' => $posts);
+			$resultUsuario = $clientes->find($queryUsuario,$projectUsuario);
+
+			$todayDate = mktime();
+			$startPlanDate = "";
+
+			foreach ($resultUsuario as $objUsuario) {
+			   	$startPlanDate = $objUsuario['fechaInicioPlan']->sec;
+			    
+			}
+
+
+
+			// Si el usuario ya tiene plan 
+
+			if($startPlanDate != null && $startPlanDate != ""){
+
+
+				//Numero de semanas que han pasado
+
+				$numberOfWeek =  date("W", $todayDate) - date("W", $startPlanDate);
+				$numberOfWeek = $numberOfWeek + 1;
+
+
+			}else{
+				$numberOfWeek = 0;
+			}
+
+			$success = array('response' => $numberOfWeek);
 			/* output in necessary format */
 				header('content-type: application/json; charset=utf-8');
 				echo $_GET['callback']."(";
+				echo json_encode($success);
 				echo ")";
 
 		}else{

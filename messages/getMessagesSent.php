@@ -45,8 +45,9 @@
 			$query = array('remitente' =>  $username);
 
 
+			$sort = array('fecha' =>  -1);
 
-			$result = $mensajes->find($query);
+			$result = $mensajes->find($query)-> sort($sort);
 
 			$posts = array();
 			// iterate through the results
@@ -56,6 +57,7 @@
 			   		"username" => $obj['remitente'],
 			   		"message" => $obj['mensaje'],
 			   		"registroPeso" => $obj['registroPeso'],
+			   		"ubicacion" => $obj['location'],
 			   		"date" => date('d M Y, g:i a', $obj['fecha']->sec)
 			   		);
 			}
