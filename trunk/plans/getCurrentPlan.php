@@ -79,8 +79,13 @@
 				$posts = array();
 				// iterate through the results
 				foreach ($result as $obj) {
-				   	$posts[] = $obj['plan'];
-				    
+				   	$posts[] = array(
+				   		"titulo" => $obj['titulo'],
+				   		"plan" => $obj['plan'],
+				   		"siemprePermitidos" => $obj['siemprePermitidos'],
+				   		"prohibidos" => $obj['prohibidos'],
+				   		"encuesta" => $obj['encuesta']
+				   		); 				    
 				}
 
 
