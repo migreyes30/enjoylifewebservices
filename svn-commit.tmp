@@ -1,0 +1,16 @@
+cambios webservices
+--This line, and those below, will be ignored--
+
+M    config/variables.php
+M    messages/getMessagesSent.php
+M    messages/getMessages.php
+M    messages/setMessage.php
+A    email
+A    email/notificacionesEmail.php
+A    plans/getCurrentWeek.php
+M    plans/startPlanProgram.php
+M    clients/clientLogin.php
+A    clients/getClientData.php
+M    clients/clientRegistration.php
+A    clients/clientUpdateInfo.php
+A    clients/getQuizData.php
