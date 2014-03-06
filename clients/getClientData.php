@@ -25,7 +25,7 @@
 	        
 			$query = array('usuario' =>  $usuario);
 
-			$isActive = array('email' =>  1,'nombre' =>  1,'peso' =>  1,'talla' =>  1);
+			$isActive = array('email' =>  1,'nombre' =>  1,'peso' =>  1,'talla' =>  1,"fechaInicioPlan" =>  1);
 
 	        $result = $clientes->find($query,$isActive);
 
@@ -38,7 +38,8 @@
 			   		"nombre" => $obj['nombre'],
 			   		"email" => $obj['email'],
 			   		"peso" => $obj['peso'],
-			   		"talla" => $obj['talla']
+			   		"talla" => $obj['talla'],
+			   		"fechaInicioPlan" => date('d M Y', $obj['fechaInicioPlan']->sec)
 			   		);
 			}
 
