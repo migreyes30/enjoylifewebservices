@@ -16,20 +16,19 @@
 			header('Access-Control-Allow-Origin: *');
 
 			$usuario = $_POST['usuario'];
+			$semana = $_POST['semanaActual'];
+			$diasDieta = $_POST['diasDieta'];
 			$peso = $_POST['peso'];
-			$estatura = $_POST['estatura'];
-			$edad = $_POST['edad'];
 			$talla = $_POST['talla'];
-			$alergico = $_POST['alergico'];
-			$diabetes = $_POST['diabetes'];
-			$hipotiroidismo = $_POST['hipotiroidismo'];
-			$cardiovascular = $_POST['cardiovascular'];
-			$colesterol = $_POST['colesterol'];
-			$triglicéridos = $_POST['triglicéridos'];
-			$medicamento = $_POST['medicamento'];
-			$comiendo = $_POST['comiendo'];
-			$numeroComidas = $_POST['numeroComidas'];
-			$objetivo = $_POST['objetivo'];
+			$evidentePesoTalla = $_POST['evidentePesoTalla'];
+			$reaccion = $_POST['reaccion'];
+			$extrenimiento = $_POST['extrenimiento'];
+			$decaido = $_POST['decaido'];
+			$problemasDormir = $_POST['problemasDormir'];
+			$experiencia = $_POST['experiencia'];
+
+
+
 			
 			// Nos conectamos a la base
 	        $mongoDB = new Mongo('mongodb://'.$DATABASE_HOSTNAME.':'.$DATABASE_PORT);
@@ -57,22 +56,17 @@
 														)
 													),
 								"talla" => (int)$talla,
-								"resultadosPrimerCuestionario" => array(
+								"resultadosCuestionarioSemanal" => array(
+										"semana" => (int)$semana,
 										"peso" => (int)$peso,
 										"talla" => (int)$talla,
-										"estatura" => (int)$estatura,
-										"edad" => (int)$edad,
-										"alergico" => $alergico,
-										"diabetes" => $diabetes,
-										"hipotiroidismo" => $hipotiroidismo,
-										"cardiovascular" => $cardiovascular,
-										"colesterol" => $colesterol,
-										"triglicéridos" => $triglicéridos,
-										"medicamento" => $medicamento,
-										"comiendo" => $comiendo,
-										"numeroComidas" => $numeroComidas,
-										"objetivo" => $objetivo
-
+										"diasDieta" => (int)$diasDieta,
+										"evidentePesoTalla" => $evidentePesoTalla,
+										"reaccion" => $reaccion,
+										"extrenimiento" => $extrenimiento,
+										"decaido" => $decaido,
+										"problemasDormir" => $problemasDormir,
+										"experiencia" => $experiencia
 									)
 							));
 
