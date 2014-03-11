@@ -5,7 +5,7 @@
 		global $DATABASE_USER;
 		global $DATABASE_PASS;
 		global $PASSPHRASE;
-		require_once '../config/variables.php';	
+		require_once '../config/variables.php';
 		include '../email/notificacionesEmail.php';
 
 		$token = $_POST['token'];
@@ -16,13 +16,6 @@
 			header('Access-Control-Allow-Origin: *');
 
 			$usuario = $_POST['usuario'];
-			$nombre = $_POST['nombre'];
-			$masculino = $_POST['masculino'];
-			$femenino = $_POST['femenino'];
-			$password = $_POST['password'];
-			$email = $_POST['email'];
-			$genero = $_POST['genero'];
-
 
 			// Nos conectamos a la base
 	        $mongoDB = new Mongo('mongodb://'.$DATABASE_HOSTNAME.':'.$DATABASE_PORT);
@@ -32,42 +25,36 @@
 	        $clientes = $database->clientes;
 	        
 			$query = array('usuario' =>  $usuario);
-			$isActive = array('usuario' =>  1);
+
+			$isActive = array('email' =>  1,'nombre' =>  1);
 
 	        $result = $clientes->find($query,$isActive);
-
+	        $email = "";
+	        $name = "";
 	        $array = iterator_to_array($result);
-
-	        if($genero == "on"){
-	        	$genero = "F";
-	        }else{
-	        	$genero = "M";
-	        }
 
 	        if(count($array) > 0){
 
-	        	foreach ($result as $obj) {
-		        	$userInDB=$obj['usuario'];
-		        }
+			foreach ($result as $obj) {
+				$email = $obj['email'];
+			   	$name = $obj['nombre'];				
+			   	$posts[] = array(
+			   		"email" => $obj['email'],
+			   	);
+			}
 
-		        echo ($userInDB);
+			error_log($usuario. " " . $email,0);
+
+			sendRecoverPasswordEmail($usuario,$email,$name);
+
+			$success = array('response' => $posts);
+			/* output in necessary format */
+				header('content-type: application/json; charset=utf-8');
+				echo json_encode($success);
 
 	        }else{
 
-				$fecha = new MongoDate();
-
-	        	$newClient = array(
-								"usuario" => $usuario,
-								"nombre" => $nombre,
-								"password" => md5($password),
-								"genero" => $genero,
-								"email" => $email,
-								"fechaRegistro" => $fecha,
-								"activo" => 1
-							);
-
-	        	$clientes -> insert($newClient);
-	        	sendActivationEmail($usuario,$email,$nombre);
+	        	echo "error";
 	        }
 
 	        $mongoDB->close();
