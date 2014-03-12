@@ -2,6 +2,8 @@
 		$usuario = base64_decode($_GET['ui']);
 		$token = $_GET['token'];
 
+		$error
+
 		global $DATABASE_HOSTNAME;
 		global $DATABASE_NAME;
 		global $DATABASE_PORT;

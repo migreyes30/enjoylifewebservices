@@ -168,7 +168,7 @@
 					<br/>
 					<p>Gracias por utilizar el servicio de recuperacion de password de Enjoy Health  <br/><br/></p>
 					<p>Para continuar te pedimos que entres a la siguiente liga : <br/><br/></p>
-					<p> <a href='http://m.enjoyhealth.me/recuperaPassword.php?ui=". base64_encode($username) ."&token=".md5($PASSPHRASE)."'> Recupera tu password </a>  <br/><br/></p>
+					<p> <a href='http://m.enjoyhealth.me/enjoylifewebservices/clients/recuperaPassword.php?ui=". base64_encode($username) ."&token=".md5($PASSPHRASE)."'> Recupera tu password </a>  <br/><br/></p>
 					<br /><br />
 					<p> Saludos,</p>
 					<p>EnjoyHealth</p>
