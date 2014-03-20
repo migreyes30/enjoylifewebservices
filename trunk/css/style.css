@@ -1,4 +1,42 @@
 #container{
-	width: 500px;
+	width: 700px;
 	margin: auto;
+}
+
+#tituloFormulario{
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.inputText{
+	font-size: 24px;
+}
+
+.elementoRadio{
+	font-size: 24px;
+}
+
+label{
+	font-size: 20px;
+}
+
+.botonEnviarFormulario {
+ cursor: pointer;
+ -moz-box-shadow:inset 0px 1px 0px -50px #8A0808;
+ -webkit-box-shadow:inset 0px 1px 0px -50px #8A0808;
+ box-shadow:inset 0px 1px 0px -50px #8A0808;
+ background-color:#8A0808;
+ -moz-border-radius:6px;
+ -webkit-border-radius:6px;
+ border-radius:6px;
+ border:1px solid #eeb44f;
+ display:inline-block;
+ color:#ffffff;
+ font-family:Arial, Helvetica, sans-serif;
+ font-size:24px;
+ font-weight:bold;
+ padding:4px 22px;
+ text-decoration:none;
+ text-shadow:1px 1px 0px #cc9f52;
+ letter-spacing: -1px;
 }
