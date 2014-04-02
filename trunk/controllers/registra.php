@@ -42,6 +42,7 @@
         	$genero = "F";
         }
 
+        error_log("hay usuarios ". count($array) ,0);
         if(count($array) > 0){
 
         	foreach ($result as $obj) {
