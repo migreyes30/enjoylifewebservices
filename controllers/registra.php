@@ -69,7 +69,7 @@
         	sendActivationEmail($usuario,$email,$nombre);
         	sendNewWebRegisterNotification($usuario,$email,$nombre);
         	error_log("registro web completado " .$clientes,0);
-        	header("location: ../registro/bienvenido.php");
+        	header("location: ../registro/bienvenido.php?nombre=".$nombre);
         }
 
         $mongoDB->close();
