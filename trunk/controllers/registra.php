@@ -66,9 +66,11 @@
 
         	$clientes -> insert($newClient);
 
+
+
         	sendActivationEmail($usuario,$email,$nombre);
         	sendNewWebRegisterNotification($usuario,$email,$nombre);
-        	error_log("registro web completado",0);
+        	error_log("registro web completado " .$clientes,0);
         }
 
         $mongoDB->close();
