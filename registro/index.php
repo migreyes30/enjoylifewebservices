@@ -116,7 +116,7 @@
                     <br/>
                     <input type="password" name="password" id="password" placeholder="Password"  class="inputText">
                     <br/><br/>
-                    <input type="password" name="password2" id="password2" placeholder="Inserta tu password nuevamente" class="inputText">
+                    <input type="password" name="password2" id="password2" placeholder="Password nuevamente" class="inputText">
                     <br/><br/>
                     <input type="email" name="email" id="email" placeholder="Correo electrónico" data-clear-btn="true" class="inputText">
 
