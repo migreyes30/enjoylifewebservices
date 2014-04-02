@@ -75,7 +75,7 @@
     });        
     </script>
 </head>
-<body class="claro">
+<body>
 <!-- begin #container -->
     <div id="container">
         <div id="contenido">
@@ -83,7 +83,8 @@
 			<div id="formulario">
 			  <span id="tituloFormulario">Registro</span>
               <br/><br/>
-              Para registrarte en enjoyhealth te pedimos de favor que llenes los siguientes campos :
+              <span id="textoFormulario">Para registrarte en enjoyhealth te pedimos de favor que llenes los siguientes campos :</span>
+              
 			  <form id="registerForm" accept-charset="utf-8" action="../controllers/registra.php" method="post">
 			  <br/>
 
@@ -107,7 +108,7 @@
                     <br/><br/>
                     <input type="email" name="email" id="email" placeholder="Correo electrónico" data-clear-btn="true" class="inputText">
 
-                    <br /><br/>
+                    <br /><br/><br/>
 				    <input type="submit" value="Crear cuenta" id="submitButton" class="botonEnviarFormulario"/>
 			  </form>
 
