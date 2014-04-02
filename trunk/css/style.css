@@ -4,7 +4,8 @@ body{
 
 #container{
 	width: 900px;
-	min-height: 1000px;
+	height: 100%;
+	min-height: 800px;
 	margin: auto;
 	background-color: #FFF;
 }
