@@ -1,3 +1,14 @@
+<?php
+        
+        if (!empty($_GET["error"])){
+            $error_message = "Error : El usuario ya existe en la base datos";
+        }else{
+            $error_message = "";
+        }
+?>
+
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -108,7 +119,15 @@
                     <br/><br/>
                     <input type="email" name="email" id="email" placeholder="Correo electrónico" data-clear-btn="true" class="inputText">
 
-                    <br /><br/><br/>
+                    <br /><br/>
+
+                    <?php
+                            
+                        echo "<span id='mensajeError'>". $error_message ."</span><br/>";
+                            
+                    ?>
+
+                    <br/>
 				    <input type="submit" value="Crear cuenta" id="submitButton" class="botonEnviarFormulario"/>
 			  </form>
 

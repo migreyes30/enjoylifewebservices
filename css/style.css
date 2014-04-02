@@ -19,6 +19,10 @@ body{
 	font-weight: bold;
 }
 
+#mensajeError{
+	color: red;
+	font-size: 18px;
+}
 
 #textoFormulario{
 	font-size: 18px;

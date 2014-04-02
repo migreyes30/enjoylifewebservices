@@ -42,14 +42,11 @@
         	$genero = "F";
         }
 
-        error_log("hay usuarios ". count($array) ,0);
+        
+
         if(count($array) > 0){
-
-        	foreach ($result as $obj) {
-	        	$userInDB=$obj['usuario'];
-	        }
-
-	        echo ($userInDB);
+        	error_log("ya existe el usuario ". count($array) ,0);
+        	header("location: ../registro/index.php?error=1");
 
         }else{
 
@@ -72,8 +69,9 @@
         	sendActivationEmail($usuario,$email,$nombre);
         	sendNewWebRegisterNotification($usuario,$email,$nombre);
         	error_log("registro web completado " .$clientes,0);
+        	header("location: ../registro/bienvenido.php");
         }
 
         $mongoDB->close();
-        header("location: ../registro/bienvenido.php");
+        
 ?>
