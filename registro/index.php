@@ -5,6 +5,13 @@
         }else{
             $error_message = "";
         }
+
+        if (!empty($_GET["error"])){
+            $error_message = "Error : El usuario ya existe en la base datos";
+        }else{
+            $error_message = "";
+        }
+
 ?>
 
 
