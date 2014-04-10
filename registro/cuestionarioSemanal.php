@@ -108,8 +108,10 @@
               <span id="textoFormulario">Hola <?php echo $name; ?>, para seguir el programa de EnjoyHealth te pedimos de favor que llenes los siguientes campos :</span>
               <br /><br />
 
-                <form id="registerForm" accept-charset="utf-8" action="../controllers/registraCuestionario.php" method="post">
+                <form id="registerForm" accept-charset="utf-8" action="../controllers/registraCuestionarioSemanal.php" method="post">
                     <input type="hidden" name="usuario" id="usuario" value='<?php echo $usuario; ?>' >
+                    <input type="hidden" name="name" id="name" value='<?php echo $name; ?>' >
+                    <input type="hidden" name="semanaActual" id="semanaActual" value='1' >
                     <label for="diasDieta">¿Cuántos días de la semana hizo la dieta?</label>
                     <input type="number" name="diasDieta" id="diasDieta" pattern="[0-9]*" id="number-pattern" value="">                                        
                     <br /><br /> 
@@ -121,32 +123,32 @@
                     <br /><br />               
                     <label for="evidentePesoTalla">¿Fue más evidente en el peso que en la talla?</label>
                     <select name="evidentePesoTalla" id="evidentePesoTalla" >
-                        <option value="off">No</option>
-                        <option value="on" selected="">Si</option>
+                        <option value="no">No</option>
+                        <option value="si" selected="">Si</option>
                     </select>
                     <br /><br /> 
                    <label for="reaccion">¿Hubo alguna reacción en los alimentos permitidos?</label>
                     <select name="reaccion" id="reaccion" >
-                        <option value="off">No</option>
-                        <option value="on" selected="">Si</option>
+                        <option value="no">No</option>
+                        <option value="si" selected="">Si</option>
                     </select>
                     <br /><br /> 
                     <label for="extrenimiento">¿Hubo extreñimiento?</label>
                     <select name="extrenimiento" id="extrenimiento" >
-                        <option value="off">No</option>
-                        <option value="on" selected="">Si</option>
+                        <option value="no">No</option>
+                        <option value="si" selected="">Si</option>
                     </select>
                     <br /><br /> 
                     <label for="decaido">¿Te sentiste decaído?</label>
                     <select name="decaido" id="decaido">
-                        <option value="off">No</option>
-                        <option value="on" selected="">Si</option>
+                        <option value="no">No</option>
+                        <option value="si" selected="">Si</option>
                     </select>
                     <br /><br /> 
                     <label for="problemasDormir">¿Tuviste problemas para dormir?</label>
                     <select name="problemasDormir" id="problemasDormir" >
-                        <option value="off">No</option>
-                        <option value="on" selected="">Si</option>
+                        <option value="no">No</option>
+                        <option value="si" selected="">Si</option>
                     </select>
                     <br /><br /> 
                     <label for="experiencia">En general cuál fue tu experiencia esta semana?</label>
