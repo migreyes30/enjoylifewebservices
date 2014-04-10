@@ -27,8 +27,6 @@
 			$problemasDormir = $_POST['problemasDormir'];
 			$experiencia = $_POST['experiencia'];
 
-
-
 			
 			// Nos conectamos a la base
 	        $mongoDB = new Mongo('mongodb://'.$DATABASE_HOSTNAME.':'.$DATABASE_PORT);
