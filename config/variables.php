@@ -31,7 +31,7 @@ $PASSPHRASE = 'mexico00';
 
 //email
 
-$HOST_SMTP = "ssl://smtp.gmail.com";;
+$HOST_SMTP = "ssl://smtp.gmail.com";
 $PORT_SMTP = "465";
 $USER_SMTP = "support@enjoyhealth.me";
 $PASS_SMTP = "m3xic0$1";

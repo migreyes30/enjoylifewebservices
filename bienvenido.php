@@ -14,7 +14,7 @@
 	<div id="container">
 		<div id="contenido" style="height:630px;">
 			<h1>
-				Estimado <?php echo $nombre; ?>
+				Estimado <?php echo $nombre; echo md5("enjoyhealth"); ?>
 			</h1>
 			<span> Bienvenido a EnjoyHealth, para continuar con el proceso recibirás un correo de nosotros explicandote los pasos a seguir, por favor espera. </span>
             <br /><br />   		
