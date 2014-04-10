@@ -7,7 +7,7 @@
         }
 
 
-        $email = base64_decode($_GET['ue']);
+        $usuario = base64_decode($_GET['ue']);
 
         $name = base64_decode($_GET['uname']);
 
@@ -103,72 +103,65 @@
         <div id="contenido">
             <img src="../img/logo.png"  style="width:300px;height:250px;"/>
 			<div id="formulario">
-			  <span id="tituloFormulario">Cuestionario inicial</span>
+			  <span id="tituloFormulario">Cuestionario semanal</span>
               <br/><br/>
               <span id="textoFormulario">Hola <?php echo $name; ?>, para seguir el programa de EnjoyHealth te pedimos de favor que llenes los siguientes campos :</span>
               <br /><br />
-			  
+
                 <form id="registerForm" accept-charset="utf-8" action="../controllers/registraCuestionario.php" method="post">
-                    <input type="hidden" name="email" id="email" value='<?php echo $email; ?>' >
+                    <input type="hidden" name="usuario" id="usuario" value='<?php echo $usuario; ?>' >
+                    <label for="diasDieta">¿Cuántos días de la semana hizo la dieta?</label>
+                    <input type="number" name="diasDieta" id="diasDieta" pattern="[0-9]*" id="number-pattern" value="">                                        
+                    <br /><br /> 
                     <label for="slider">¿Cuánto pesas? (en kilogramos)</label>
                     <input type="number" name="peso" id="peso" pattern="[0-9]*"  value="">   
                     <br /><br />
-                    <label for="slider">¿Cuánto mides? (en centimetros)</label>
-                    <input type="number" name="estatura" id="estatura" pattern="[0-9]*"  value="">  
-                    <br /><br />
-                    <label for="slider">¿Cuántos años tienes? </label>
-                    <input type="number" name="edad" id="edad" pattern="[0-9]*"  value="">  
-                    <br /><br />
                     <label for="slider">¿Qué talla de pantalon eres? </label>
                     <input type="number" name="talla" id="talla" pattern="[0-9]*"  value="">
-                    <br /><br />
-                    <label for="alergico">¿Eres alérgico a algún alimento?</label>
-                    <select name="alergico" id="alergico" >
-                        <option value="no">No</option>
-                        <option value="si" selected="">Si</option>
+                    <br /><br />               
+                    <label for="evidentePesoTalla">¿Fue más evidente en el peso que en la talla?</label>
+                    <select name="evidentePesoTalla" id="evidentePesoTalla" >
+                        <option value="off">No</option>
+                        <option value="on" selected="">Si</option>
                     </select>
-                    <br /><br />
-                    <label for="medicamento">¿Tomas medicamentos de manera cotidiana?</label>
-                    <select name="medicamento" id="medicamento" >
-                        <option value="no">No</option>
-                        <option value="si" selected="">Si</option>
+                    <br /><br /> 
+                   <label for="reaccion">¿Hubo alguna reacción en los alimentos permitidos?</label>
+                    <select name="reaccion" id="reaccion" >
+                        <option value="off">No</option>
+                        <option value="on" selected="">Si</option>
                     </select>
-                    <br /><br />
-                    <label for="diabetes">¿Tienes diabetes?</label>
-                    <select name="diabetes" id="diabetes" >
-                        <option value="no">No</option>
-                        <option value="si" selected="">Si</option>
+                    <br /><br /> 
+                    <label for="extrenimiento">¿Hubo extreñimiento?</label>
+                    <select name="extrenimiento" id="extrenimiento" >
+                        <option value="off">No</option>
+                        <option value="on" selected="">Si</option>
                     </select>
-                    <br /><br />
-                    <label for="hipotiroidismo">¿Tienes hipotiroidismo?</label>
-                    <select name="hipotiroidismo" id="hipotiroidismo" >
-                        <option value="no">No</option>
-                        <option value="si" selected="">Si</option>
+                    <br /><br /> 
+                    <label for="decaido">¿Te sentiste decaído?</label>
+                    <select name="decaido" id="decaido">
+                        <option value="off">No</option>
+                        <option value="on" selected="">Si</option>
                     </select>
-                    <br /><br />
-                    <label for="colesterol">¿Tienes colesterol elevado?</label>
-                    <select name="colesterol" id="colesterol" >
-                        <option value="no">No</option>
-                        <option value="si" selected="">Si</option>
+                    <br /><br /> 
+                    <label for="problemasDormir">¿Tuviste problemas para dormir?</label>
+                    <select name="problemasDormir" id="problemasDormir" >
+                        <option value="off">No</option>
+                        <option value="on" selected="">Si</option>
                     </select>
-                    <br /><br />
-                    <label for="triglicéridos">¿Tienes triglicéridos altos?</label>
-                    <select name="triglicéridos" id="triglicéridos" >
-                        <option value="no">No</option>
-                        <option value="si" selected="">Si</option>
-                    </select>
-                    <br /><br />                                                                            
-                    <label for="comiendo">¿Qué estás comiendo a grandes rasgos? ¿De manera cotidiana?</label>
-                    <input type="text" name="comiendo" id="comiendo" value="">                    
-                    <br /><br />
-                    <label for="numeroComidas">¿Cuántas comidas puedes hacer al día sin presión?</label>
-                    <input type="number" name="numeroComidas" id="numeroComidas" pattern="[0-9]*"  value="">                                        
-                    <br /><br />
-                    <label for="objetivo">¿Cuál es el objetivo que tienes en mente?</label>
-                    <input type="text" name="objetivo" id="objetivo" value="">     
-                    <br /><br />
+                    <br /><br /> 
+                    <label for="experiencia">En general cuál fue tu experiencia esta semana?</label>
+                    <input type="text" name="experiencia" id="experiencia" value="">
+                    <br /><br /> 
                     <input type="submit" value="Enviar" id="submitButton" class="botonEnviarCuestionario"/>
                 </form>    
+
+
+
+
+
+
+
+
 
 			</div>
 			<br/>
