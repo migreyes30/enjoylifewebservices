@@ -121,10 +121,10 @@
                     <label for="slider">¿Qué talla de pantalon eres? </label>
                     <input type="number" name="talla" id="talla" pattern="[0-9]*"  value="">
                     <br /><br />               
-                    <label for="evidentePesoTalla">¿Fue más evidente en el peso que en la talla?</label>
+                    <label for="evidentePesoTalla">¿En que fue más evidente el proceso, talla o peso?</label>
                     <select name="evidentePesoTalla" id="evidentePesoTalla" >
-                        <option value="no">No</option>
-                        <option value="si" selected="">Si</option>
+                        <option value="peso">Peso</option>
+                        <option value="talla" selected="">Talla</option>
                     </select>
                     <br /><br /> 
                    <label for="reaccion">¿Hubo alguna reacción en los alimentos permitidos?</label>
