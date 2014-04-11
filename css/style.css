@@ -40,6 +40,10 @@ label{
 	font-size: 20px;
 }
 
+.error{
+	color: red;
+}
+
 .botonEnviarFormulario {
 	cursor: pointer;
 	-moz-box-shadow:inset 0px 1px 0px -50px #8A0808;
