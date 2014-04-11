@@ -117,10 +117,7 @@
                     <br /><br /> 
                     <label for="slider">¿Cuánto pesas? (en kilogramos)</label>
                     <input type="number" name="peso" id="peso" pattern="[0-9]*"  value="">   
-                    <br /><br />
-                    <label for="slider">¿Qué talla de pantalon eres? </label>
-                    <input type="number" name="talla" id="talla" pattern="[0-9]*"  value="">
-                    <br /><br />               
+                    <br /><br />           
                     <label for="evidentePesoTalla">¿En que fue más evidente el proceso, talla o peso?</label>
                     <select name="evidentePesoTalla" id="evidentePesoTalla" >
                         <option value="peso">Peso</option>
