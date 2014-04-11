@@ -31,26 +31,22 @@
                         peso: {
                             required: true,
                             number: true,
-                            maxlength: 3
+                            maxlength: 5,
+                            min:20
                         },
-                        talla: {
+                        diasDieta: {
                             required: true,
                             number: true,
-                            maxlength: 2
+                            maxlength: 2,
+                            min:0
                         },
-                        estatura: {
-                            required: true,
-                            number: true,
-                            maxlength: 2
+                        experiencia: {
+                            required: true
                         },
                         edad: {
                             required: true,
                             number: true,
                             maxlength: 2
-                        },
-                        password2 : {
-                            required: true,
-                            equalTo : "#password"
                         },
                         email: {
                             required: true,
@@ -62,17 +58,17 @@
                             peso: {
                                 number: "Peso invalido, solamente numeros",
                                 required : "Campo requerido",
-                                maxlength : "Peso Invalido, no mayor a 3 digitos"
+                                maxlength : "Peso Invalido, no mayor a 4 digitos",
+                                min : "peso invalido"
                             },
-                            talla: {
+                            diasDieta: {
                                 required : "Campo requerido",
-                                number : "Talla invalido, solamente numeros",
-                                maxlength: "Talla Invalido, no mayor a 2 digitos"
+                                number : "Días invalidos, solamente numeros",
+                                maxlength: "Días invalidos, no mayor a 2 digitos",
+                                min:"Número de días invalidos"
                             },
-                            estatura: {
-                                required : "Campo requerido",
-                                number : "Talla invalido, solamente numeros",
-                                maxlength: "Talla Invalido, no mayor a 2 digitos"
+                            experiencia: {
+                                required : "Campo requerido"
                             },
                             edad: {
                                 required : "Campo requerido",
