@@ -13,7 +13,6 @@
 		$semana = $_POST['semanaActual'];
 		$diasDieta = $_POST['diasDieta'];
 		$peso = $_POST['peso'];
-		$talla = $_POST['talla'];
 		$evidentePesoTalla = $_POST['evidentePesoTalla'];
 		$reaccion = $_POST['reaccion'];
 		$extrenimiento = $_POST['extrenimiento'];
@@ -57,7 +56,6 @@
 
 		    	$newData = array('$set' => array(
 								"peso" => (int)$peso,
-								"talla" => (int)$talla,
 								"ultimaSemanaCuestionario" => (int)$semana
 							));
 
@@ -66,14 +64,9 @@
 															"fecha" => $fecha,
 															"peso" => (int)$peso
 													),
-								"historialTalla" => array(
-															"fecha" => $fecha,
-															"talla" => (int)$talla
-													),
 								"resultadosCuestionarioSemanal" => array(
 										"semana" => (int)$semana,
 										"peso" => (int)$peso,
-										"talla" => (int)$talla,
 										"diasDieta" => (int)$diasDieta,
 										"evidentePesoTalla" => $evidentePesoTalla,
 										"reaccion" => $reaccion,
