@@ -126,7 +126,7 @@
                         <option value="si" selected="">Si</option>
                     </select>
                     <br /><br /> 
-                    <label for="extrenimiento">¿Hubo extreñimiento?</label>
+                    <label for="extrenimiento">¿Hubo estreñimiento?</label>
                     <select name="extrenimiento" id="extrenimiento" >
                         <option value="no">No</option>
                         <option value="si" selected="">Si</option>

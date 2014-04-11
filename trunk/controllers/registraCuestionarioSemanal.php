@@ -62,11 +62,11 @@
 		    	$newDataPush = array('$push' => array(
 								"historialPeso" => array(
 															"fecha" => $fecha,
-															"peso" => (int)$peso
+															"peso" => floatval($peso)
 													),
 								"resultadosCuestionarioSemanal" => array(
 										"semana" => (int)$semana,
-										"peso" => (int)$peso,
+										"peso" => floatval($peso),
 										"diasDieta" => (int)$diasDieta,
 										"evidentePesoTalla" => $evidentePesoTalla,
 										"reaccion" => $reaccion,
