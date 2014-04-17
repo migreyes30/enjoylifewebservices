@@ -13,11 +13,15 @@
 		$semana = $_POST['semanaActual'];
 		$diasDieta = $_POST['diasDieta'];
 		$peso = $_POST['peso'];
-		$evidentePesoTalla = $_POST['evidentePesoTalla'];
+		$pesoAnterior = $_POST['pesoAnterior'];
+		$comportamientoPeso = $_POST['comportamientoPeso'];
+		$comportamientoTalla = $_POST['comportamientoTalla'];
 		$reaccion = $_POST['reaccion'];
-		$extrenimiento = $_POST['extrenimiento'];
+		$estrenimiento = $_POST['estrenimiento'];
+		$diasEstrenimiento = $_POST['diasEstrenimiento'];
 		$decaido = $_POST['decaido'];
 		$problemasDormir = $_POST['problemasDormir'];
+		$problemasDormirCausa = $_POST['problemasDormirCausa'];
 		$experiencia = $_POST['experiencia'];
 		
 		$hayError = false;
@@ -30,6 +34,9 @@
         // Seleccionamos una coleccion
         $clientes = $database->clientes;
 
+        // coleccion respuestaCuestionario
+
+        $respuestaCuestionario = $database->respuestaCuestionario;
 
 
 		$queryChecaSemana = array('usuario' =>  $usuario,'ultimaSemanaCuestionario' => (int)$semana);
@@ -61,26 +68,35 @@
 
 		    	$newDataPush = array('$push' => array(
 								"historialPeso" => array(
-															"fecha" => $fecha,
-															"peso" => floatval($peso)
-													),
-								"resultadosCuestionarioSemanal" => array(
-										"semana" => (int)$semana,
-										"peso" => floatval($peso),
-										"diasDieta" => (int)$diasDieta,
-										"evidentePesoTalla" => $evidentePesoTalla,
-										"reaccion" => $reaccion,
-										"extrenimiento" => $extrenimiento,
-										"decaido" => $decaido,
-										"problemasDormir" => $problemasDormir,
-										"experiencia" => $experiencia
-									)
-							));    	
+														"fecha" => $fecha,
+														"peso" => floatval($peso)
+													)
+							));
+
+		    	$dataRespuestacuestionario = array(
+		    					"usuario" => $usuario,
+		    					"fecha" => $fecha,
+								"semana" => (int)$semana,
+								"peso" => floatval($peso),
+								"pesoAnterior" => floatval($pesoAnterior), 
+								"diasDieta" => (int)$diasDieta,
+								"comportamientoPeso" => $comportamientoPeso,
+								"comportamientoTalla" => $comportamientoTalla,
+								"reaccion" => $reaccion,
+								"estrenimiento" => $estrenimiento,
+								"diasEstrenimiento" => $diasEstrenimiento,
+								"decaido" => $decaido,
+								"problemasDormir" => $problemasDormir,
+								"problemasDormirCausa" => $problemasDormirCausa,
+								"experiencia" => $experiencia
+							);
 
 		        
 		        $clientes -> update($query,$newData,array("upsert" => false,"multiple" => false));
 
 		        $clientes -> update($query,$newDataPush,array("upsert" => false,"multiple" => false));
+
+		        $respuestaCuestionario -> insert($dataRespuestacuestionario);
 
 
         	}

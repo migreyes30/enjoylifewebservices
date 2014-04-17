@@ -107,17 +107,28 @@
                 <form id="registerForm" accept-charset="utf-8" action="../controllers/registraCuestionarioSemanal.php" method="post">
                     <input type="hidden" name="usuario" id="usuario" value='<?php echo $usuario; ?>' >
                     <input type="hidden" name="name" id="name" value='<?php echo $name; ?>' >
-                    <input type="hidden" name="semanaActual" id="semanaActual" value='1' >
+                    <input type="hidden" name="semanaActual" id="semanaActual" value='2' >
                     <label for="diasDieta">¿Cuántos días de la semana hizo la dieta?</label>
                     <input type="number" name="diasDieta" id="diasDieta" pattern="[0-9]*" id="number-pattern" value="">                                        
                     <br /><br /> 
-                    <label for="slider">¿Cuánto pesas? (en kilogramos)</label>
+                    <label for="slider">¿Cuánto pesas? (ej 58.5)</label>
                     <input type="number" name="peso" id="peso" pattern="[0-9]*"  value="">   
-                    <br /><br />            
-                    <label for="evidentePesoTalla">¿En que fue más evidente el proceso, talla o peso?</label>
-                    <select name="evidentePesoTalla" id="evidentePesoTalla" >
-                        <option value="peso">Peso</option>
-                        <option value="talla" selected="">Talla</option>
+                    <br /><br />  
+                    <label for="slider">¿Cuál fue tu peso anterior? (ej 58.5)</label>
+                    <input type="number" name="pesoAnterior" id="pesoAnterior" pattern="[0-9]*"  value="">   
+                    <br /><br />                               
+                    <label for="evidentePesoTalla">Cómo fue el comportamiento de tu peso?</label>
+                    <select name="comportamientoPeso" id="comportamientoPeso" >
+                        <option value="subio">Subió</option>
+                        <option value="bajo" selected="">Bajó</option>
+                        <option value="mantuvo" selected="">Se mantuvo</option>
+                    </select>
+                    <br /><br /> 
+                    <label for="evidentePesoTalla">Cómo fue el comportamiento de tu talla?</label>
+                    <select name="comportamientoTalla" id="comportamientoTalla" >
+                        <option value="subio">Subió</option>
+                        <option value="bajo" selected="">Bajó</option>
+                        <option value="mantuvo" selected="">Se mantuvo</option>
                     </select>
                     <br /><br /> 
                    <label for="reaccion">¿Hubo alguna reacción en los alimentos permitidos?</label>
@@ -125,13 +136,19 @@
                         <option value="no">No</option>
                         <option value="si" selected="">Si</option>
                     </select>
-                    <br /><br /> 
-                    <label for="extrenimiento">¿Hubo estreñimiento?</label>
-                    <select name="extrenimiento" id="extrenimiento" >
+                    <br /><br />
+                    <label for="estrenimiento">¿Hubo estreñimiento?</label>
+                    <select name="estrenimiento" id="estrenimiento" >
                         <option value="no">No</option>
                         <option value="si" selected="">Si</option>
                     </select>
-                    <br /><br /> 
+                    <br /><br />
+                    <label for="extrenimiento">¿En caso de estreñimiento, cuantos días se presentó?</label>
+                    <select name="diasEstrenimiento" id="estrenimiento" >
+                        <option value="no">No</option>
+                        <option value="si" selected="">Si</option>
+                    </select>
+                    <br /><br />                     
                     <label for="decaido">¿Te sentiste decaído?</label>
                     <select name="decaido" id="decaido">
                         <option value="no">No</option>
@@ -143,7 +160,13 @@
                         <option value="no">No</option>
                         <option value="si" selected="">Si</option>
                     </select>
-                    <br /><br /> 
+                    <br /><br />
+                    <label for="problemasDormirCausa">¿El problema para dormir fue a causa de?</label>
+                    <select name="problemasDormirCausa" id="problemasDormirCausa" >
+                        <option value="consiliarSueno">Consiliar el sueño</option>
+                        <option value="despertarNoche" selected="">Despertar en la noche</option>
+                    </select>
+                    <br /><br />                     
                     <label for="experiencia">En general cuál fue tu experiencia esta semana?</label>
                     <input type="text" name="experiencia" id="experiencia" value="">
                     <br /><br /> 
