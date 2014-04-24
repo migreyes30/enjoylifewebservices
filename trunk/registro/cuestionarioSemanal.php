@@ -31,14 +31,25 @@
                         peso: {
                             required: true,
                             number: true,
-                            maxlength: 5,
-                            min:20
+                            max: 150,
+                            min: 20
+                        },
+                        pesoAnterior: {
+                            required: true,
+                            number: true,
+                            max: 150,
+                            min: 20
                         },
                         diasDieta: {
                             required: true,
                             number: true,
-                            maxlength: 2,
+                            max: 10,
                             min:0
+                        },
+                        diasEstrenimiento:{
+                            required: true,
+                            number: true,
+                            max: 30
                         },
                         experiencia: {
                             required: true
@@ -46,7 +57,7 @@
                         edad: {
                             required: true,
                             number: true,
-                            maxlength: 2
+                            max: 100
                         },
                         email: {
                             required: true,
@@ -58,22 +69,34 @@
                             peso: {
                                 number: "Peso invalido, solamente numeros",
                                 required : "Campo requerido",
-                                maxlength : "Peso Invalido, no mayor a 4 digitos",
+                                max : "Peso Invalido",
                                 min : "peso invalido"
                             },
+                            pesoAnterior: {
+                                number: "Peso invalido, solamente numeros",
+                                required : "Campo requerido",
+                                max : "Peso Invalido",
+                                min : "peso invalido"
+                            },                            
                             diasDieta: {
                                 required : "Campo requerido",
                                 number : "Días invalidos, solamente numeros",
-                                maxlength: "Días invalidos, no mayor a 2 digitos",
-                                min:"Número de días invalidos"
+                                max: "Días invalidos, no mayor a 2 digitos",
+                                min: "Número de días invalidos"
                             },
+                            diasEstrenimiento: {
+                                required : "Campo requerido",
+                                number : "Días invalidos, solamente numeros",
+                                max: "Días invalidos, no mayor a 2 digitos",
+                                min: "Número de días invalidos"
+                            },                            
                             experiencia: {
                                 required : "Campo requerido"
                             },
                             edad: {
                                 required : "Campo requerido",
                                 number : "Talla invalido, solamente numeros",
-                                maxlength: "Talla Invalido, no mayor a 2 digitos"
+                                max: "Talla Invalida"
                             },
                             estatura: {
                                 required : "Campo requerido"
@@ -107,7 +130,7 @@
                 <form id="registerForm" accept-charset="utf-8" action="../controllers/registraCuestionarioSemanal.php" method="post">
                     <input type="hidden" name="usuario" id="usuario" value='<?php echo $usuario; ?>' >
                     <input type="hidden" name="name" id="name" value='<?php echo $name; ?>' >
-                    <input type="hidden" name="semanaActual" id="semanaActual" value='2' >
+                    <input type="hidden" name="semanaActual" id="semanaActual" value='3' >
                     <label for="diasDieta">¿Cuántos días de la semana hizo la dieta?</label>
                     <input type="number" name="diasDieta" id="diasDieta" pattern="[0-9]*" id="number-pattern" value="">                                        
                     <br /><br /> 
@@ -144,10 +167,7 @@
                     </select>
                     <br /><br />
                     <label for="extrenimiento">¿En caso de estreñimiento, cuantos días se presentó?</label>
-                    <select name="diasEstrenimiento" id="estrenimiento" >
-                        <option value="no">No</option>
-                        <option value="si" selected="">Si</option>
-                    </select>
+                    <input type="number" name="diasEstrenimiento" id="diasEstrenimiento" pattern="[0-9]*"  value="">   
                     <br /><br />                     
                     <label for="decaido">¿Te sentiste decaído?</label>
                     <select name="decaido" id="decaido">
